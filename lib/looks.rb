@@ -1,0 +1,6 @@
+require 'looks/cli'
+require 'looks/command'
+require 'looks/config'
+require 'looks/error'
+require 'looks/gravatar'
+require 'looks/version'

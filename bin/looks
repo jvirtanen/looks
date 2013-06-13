@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'looks'
+
+begin
+  Looks::CLI.start(ARGV)
+rescue Interrupt
+  abort
+end

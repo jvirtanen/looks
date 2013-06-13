@@ -1,0 +1,8 @@
+require 'looks/command/account_management'
+require 'looks/command/add'
+require 'looks/command/addresses'
+require 'looks/command/base'
+require 'looks/command/config'
+require 'looks/command/images'
+require 'looks/command/rm'
+require 'looks/command/set'
