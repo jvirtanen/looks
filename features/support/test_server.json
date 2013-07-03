@@ -1,0 +1,13 @@
+{
+  "addresses": {
+    "alice@example.com": "1405e840549b8515a2c9eb41cd7126e5",
+    "alice@example.net": "1405e840549b8515a2c9eb41cd7126e5",
+    "alice@example.org": null
+  },
+  "userimages": {
+    "1405e840549b8515a2c9eb41cd7126e5": {
+      "rating": 0,
+      "url": "http://www.gravatar.com/avatar/1405e840549b8515a2c9eb41cd7126e5.png"
+    }
+  }
+}

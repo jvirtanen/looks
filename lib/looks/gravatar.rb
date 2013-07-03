@@ -8,7 +8,7 @@ require 'digest/md5'
 module Looks
   module Gravatar
 
-    URL = 'https://secure.gravatar.com/xmlrpc'
+    URL = ENV['LOOKS_GRAVATAR_URL'] || 'https://secure.gravatar.com/xmlrpc'
 
     def self.hash(email)
       Digest::MD5.hexdigest(email.strip.downcase)

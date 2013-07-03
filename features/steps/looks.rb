@@ -1,3 +1,21 @@
+servers = {}
+
+After do
+  servers.each do |server, thread|
+    server.shutdown
+    thread.join
+  end
+
+  servers.clear
+end
+
+Given /^a test server is running$/ do
+  server = TestServer.new(8080, "features/support/test_server.json")
+  thread = Thread.new { server.start }
+
+  servers[server] = thread
+end
+
 Given /^I wait for a file named "([^"]+)" to be created$/ do |filename|
   step "a file named \"#{filename}\" should exist"
 end
