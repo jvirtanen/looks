@@ -42,6 +42,31 @@ class TestServer
       Hash[result]
     end
 
+    servlet.add_handler("grav.useUserimage") do |args|
+      userimage = args['userimage']
+      addresses = args['addresses']
+
+      method_parameter_missing unless userimage
+      method_parameter_missing unless addresses
+
+      unknown_addresses = addresses.select do |address|
+        not config['addresses'].include? address
+      end
+
+      method_parameter_incorrect unless config['userimages'].include? userimage
+      method_parameter_incorrect unless unknown_addresses.empty?
+
+      addresses.each do |address|
+        config['addresses'][address] = userimage
+      end
+
+      result = addresses.map do |address|
+        [ address, true ]
+      end
+
+      Hash[result]
+    end
+
     @server = WEBrick::HTTPServer.new(
       :AccessLog => [],
       :Logger    => WEBrick::Log.new(File::NULL),
@@ -56,6 +81,16 @@ class TestServer
 
   def shutdown
     @server.shutdown
+  end
+
+  private
+
+  def method_parameter_missing
+    raise XMLRPC::FaultException.new(-10, "Method parameter missing")
+  end
+
+  def method_parameter_incorrect
+    raise XMLRPC::FaultException.new(-11, "Method parameter incorrect")
   end
 
 end
