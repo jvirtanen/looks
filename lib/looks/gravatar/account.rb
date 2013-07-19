@@ -37,7 +37,7 @@ module Looks
       def add(image)
         data = Base64.encode64(image)
 
-        call('grav.saveData', { 'data' => data })
+        call('grav.saveData', { 'data' => data, 'rating' => 0 })
       end
 
       def remove(image)
