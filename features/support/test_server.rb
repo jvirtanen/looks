@@ -18,6 +18,10 @@ class TestServer
           data['rating']        = userimage['rating']
           data['userimage']     = value
           data['userimage_url'] = userimage['url']
+        else
+          data['rating']        = 0
+          data['userimage']     = ""
+          data['userimage_url'] = "http://www.gravatar.com/avatar/.png"
         end
 
         [ address, data ]

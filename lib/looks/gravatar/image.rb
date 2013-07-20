@@ -4,11 +4,16 @@ module Looks
       include Comparable
 
       def self.new_from_addresses(value)
-        id     = value['userimage']
-        url    = value['userimage_url']
-        rating = value['rating']
+        id = value['userimage']
 
-        new(id, url, rating)
+        if not id.empty?
+          url    = value['userimage_url']
+          rating = value['rating']
+
+          new(id, url, rating)
+        else
+          nil
+        end
       end
 
       def self.new_from_images(key, value)
