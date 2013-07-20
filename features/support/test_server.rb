@@ -91,6 +91,27 @@ class TestServer
       userimage
     end
 
+    servlet.add_handler("grav.deleteUserimage") do |args|
+      userimage = args['userimage']
+
+      method_parameter_missing   unless userimage
+      method_parameter_incorrect unless config['userimages'].include? userimage
+
+      config['userimages'].delete(userimage)
+
+      new_addresses = config['addresses'].map do |key, value|
+        if value == userimage
+          [ key, nil ]
+        else
+          [ key, value ]
+        end
+      end
+
+      config['addresses'] = Hash[new_addresses]
+
+      true
+    end
+
     @server = WEBrick::HTTPServer.new(
       :AccessLog => [],
       :Logger    => WEBrick::Log.new(File::NULL),
