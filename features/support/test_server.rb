@@ -1,3 +1,6 @@
+require 'base64'
+require 'digest'
+require 'dimensions'
 require 'json'
 require 'webrick'
 require 'xmlrpc/server'
@@ -67,6 +70,27 @@ class TestServer
       Hash[result]
     end
 
+    servlet.add_handler("grav.saveData") do |args|
+      data   = args['data']
+      rating = args['rating']
+
+      method_parameter_missing unless data
+      method_parameter_missing unless rating
+
+      image = Base64.decode64(data)
+
+      misc_error("Not an image") unless image? image
+
+      userimage = Digest::MD5.hexdigest(image)
+
+      config['userimages'][userimage] = {
+        'rating' => rating,
+        'url'    => "http://www.gravatar.com/avatar/#{userimage}.png"
+      }
+
+      userimage
+    end
+
     @server = WEBrick::HTTPServer.new(
       :AccessLog => [],
       :Logger    => WEBrick::Log.new(File::NULL),
@@ -85,12 +109,20 @@ class TestServer
 
   private
 
+  def image?(data)
+    not Dimensions(StringIO.new(data)).tap { |io| io.read }.width.nil?
+  end
+
   def method_parameter_missing
     raise XMLRPC::FaultException.new(-10, "Method parameter missing")
   end
 
   def method_parameter_incorrect
     raise XMLRPC::FaultException.new(-11, "Method parameter incorrect")
+  end
+
+  def misc_error(message)
+    raise XMLRPC::FaultException.new(-100, message)
   end
 
 end
