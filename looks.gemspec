@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir[ 'LICENSE', 'README.md', 'bin/*', 'lib/**/*.rb' ]
 
+  s.required_ruby_version = '>= 1.9.3'
+
   s.add_dependency 'highline', '~> 1.6'
   s.add_dependency 'inifile',  '~> 2.0'
 

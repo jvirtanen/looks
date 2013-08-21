@@ -9,7 +9,7 @@ Looks is a command line interface to [Gravatar][].
 Installation
 ------------
 
-Installing Looks requires [Ruby 1.9.3 or newer][Ruby].
+Installing Looks requires [Ruby][].
 
   [Ruby]: http://ruby-lang.org/
 
