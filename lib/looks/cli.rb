@@ -15,6 +15,7 @@ Commands:
   images     List uploaded images
   rm         Remove an uploaded image
   set        Set the image for an email address
+  unset      Unset the image for an email address
 
     EOF
 
@@ -24,7 +25,8 @@ Commands:
       'config'    => Command::Config,
       'images'    => Command::Images,
       'rm'        => Command::Rm,
-      'set'       => Command::Set
+      'set'       => Command::Set,
+      'unset'     => Command::Unset
     }
 
     def self.start(args)

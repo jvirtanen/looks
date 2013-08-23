@@ -51,6 +51,12 @@ module Looks
         })
       end
 
+      def unset(address)
+        call('grav.removeImage', {
+          'addresses' => [ address ]
+        })
+      end
+
       private
 
       def call(method, args = {})

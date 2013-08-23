@@ -70,6 +70,28 @@ class TestServer
       Hash[result]
     end
 
+    servlet.add_handler("grav.removeImage") do |args|
+      addresses = args['addresses']
+
+      method_parameter_missing unless addresses
+
+      unknown_addresses = addresses.select do |address|
+        not config['addresses'].include? address
+      end
+
+      method_parameter_incorrect unless unknown_addresses.empty?
+
+      addresses.each do |address|
+        config['addresses'][address] = nil
+      end
+
+      result = addresses.map do |address|
+        [ address, true ]
+      end
+
+      Hash[result]
+    end
+
     servlet.add_handler("grav.saveData") do |args|
       data   = args['data']
       rating = args['rating']
