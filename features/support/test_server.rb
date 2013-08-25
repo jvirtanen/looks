@@ -52,12 +52,11 @@ class TestServer
       method_parameter_missing unless userimage
       method_parameter_missing unless addresses
 
-      unknown_addresses = addresses.select do |address|
-        not config['addresses'].include? address
-      end
-
       method_parameter_incorrect unless config['userimages'].include? userimage
-      method_parameter_incorrect unless unknown_addresses.empty?
+
+      unless unknown_addresses(addresses, config).empty?
+        method_parameter_incorrect
+      end
 
       addresses.each do |address|
         config['addresses'][address] = userimage
@@ -75,11 +74,9 @@ class TestServer
 
       method_parameter_missing unless addresses
 
-      unknown_addresses = addresses.select do |address|
-        not config['addresses'].include? address
+      unless unknown_addresses(addresses, config).empty?
+        method_parameter_incorrect
       end
-
-      method_parameter_incorrect unless unknown_addresses.empty?
 
       addresses.each do |address|
         config['addresses'][address] = nil
@@ -154,6 +151,12 @@ class TestServer
 
   def image?(data)
     not Dimensions(StringIO.new(data)).tap { |io| io.read }.width.nil?
+  end
+
+  def unknown_addresses(addresses, config)
+    addresses.select do |address|
+      not config['addresses'].include? address
+    end
   end
 
   def method_parameter_missing
