@@ -1,4 +1,4 @@
-require 'looks/cli'
+require 'looks/error'
 require 'looks/version'
 
 require 'optparse'
@@ -22,7 +22,7 @@ module Looks
         begin
           @opts.parse! args
         rescue OptionParser::ParseError => e
-          CLI.error(e)
+          raise Error, e
         end
 
         usage unless args.length == arguments.length
