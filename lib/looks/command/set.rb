@@ -18,7 +18,7 @@ module Looks
         account = Gravatar::Account.new(config)
 
         begin
-          account.set(address, id)
+          account.use_image(address, id)
         rescue Gravatar::IncorrectMethodParameterError
           addresses = account.addresses.map { |address| address.email }
 

@@ -34,24 +34,24 @@ module Looks
         images.sort
       end
 
-      def add(image)
+      def save_data(image)
         data = Base64.encode64(image)
 
         call('grav.saveData', { 'data' => data, 'rating' => 0 })
       end
 
-      def remove(image)
+      def delete_image(image)
         call('grav.deleteUserimage', { 'userimage' => image })
       end
 
-      def set(address, id)
+      def use_image(address, id)
         call('grav.useUserimage', {
           'userimage' => id,
           'addresses' => [ address ]
         })
       end
 
-      def unset(address)
+      def remove_image(address)
         call('grav.removeImage', {
           'addresses' => [ address ]
         })

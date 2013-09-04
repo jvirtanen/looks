@@ -19,7 +19,7 @@ module Looks
 
         begin
           File.open(filename) do |file|
-            puts Gravatar::Account.new(config).add(file.read)
+            puts Gravatar::Account.new(config).save_data(file.read)
           end
         rescue IOError, SystemCallError
           raise Error, "#{filename}: Cannot read file"
