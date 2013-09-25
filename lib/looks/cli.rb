@@ -2,7 +2,7 @@ require 'looks/command'
 require 'looks/config'
 require 'looks/error'
 
-module Looks 
+module Looks
   module CLI
 
     USAGE = <<-EOF
