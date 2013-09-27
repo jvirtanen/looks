@@ -9,10 +9,10 @@ module Looks
 Usage: looks <command> [arguments]
 
 Commands:
-  add        Upload an image
   addresses  List email addresses
   config     Configure the default account
   images     List uploaded images
+  push       Upload an image
   rm         Remove an uploaded image
   set        Set the image for an email address
   unset      Unset the image for an email address
@@ -20,10 +20,10 @@ Commands:
     EOF
 
     COMMANDS = {
-      'add'       => Command::Add,
       'addresses' => Command::Addresses,
       'config'    => Command::Config,
       'images'    => Command::Images,
+      'push'      => Command::Push,
       'rm'        => Command::Rm,
       'set'       => Command::Set,
       'unset'     => Command::Unset

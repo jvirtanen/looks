@@ -4,7 +4,7 @@ require 'looks/gravatar'
 
 module Looks
   module Command
-    class Add < AccountManagement
+    class Push < AccountManagement
 
       def arguments
         [ '<filename>' ]
