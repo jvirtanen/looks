@@ -39,6 +39,15 @@ Feature: looks push
       looks: error: foo.png: Cannot read file
       """
 
+  Scenario: No connectivity
+    Given the file named "pink.png"
+    And I configure the default account
+    When I run `looks push pink.png`
+    Then it should fail with:
+      """
+      looks: error: Unable to connect to Gravatar server
+      """
+
   Scenario: Unknown file format
     Given a test server is running
     And an empty file named "foo.png"

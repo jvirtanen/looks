@@ -21,6 +21,14 @@ Feature: looks set
       Usage: looks set [options] <address> <id>
       """
 
+  Scenario: No connectivity
+    Given I configure the default account
+    When I run `looks set alice@example.com foo`
+    Then it should fail with:
+      """
+      looks: error: Unable to connect to Gravatar server
+      """
+
   Scenario: Unknown address
     Given a test server is running
     And I configure the default account

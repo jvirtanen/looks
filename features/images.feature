@@ -14,6 +14,14 @@ Feature: looks images
       Usage: looks images [options]
       """
 
+  Scenario: No connectivity
+    Given I configure the default account
+    When I run `looks images`
+    Then it should fail with:
+      """
+      looks: error: Unable to connect to Gravatar server
+      """
+
   Scenario: Default operation
     Given a test server is running
     And I configure the default account

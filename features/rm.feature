@@ -21,6 +21,14 @@ Feature: looks rm
       Usage: looks rm [options] <id>
       """
 
+  Scenario: No connectivity
+    Given I configure the default account
+    When I run `looks rm foo`
+    Then it should fail with:
+      """
+      looks: error: Unable to connect to Gravatar server
+      """
+
   Scenario: Unknown identifier
     Given a test server is running
     And I configure the default account

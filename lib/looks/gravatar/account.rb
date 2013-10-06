@@ -1,3 +1,4 @@
+require 'looks/error'
 require 'looks/gravatar/address'
 require 'looks/gravatar/errors'
 require 'looks/gravatar/image'
@@ -64,6 +65,8 @@ module Looks
 
         begin
           @server.call(method, args)
+        rescue SocketError, SystemCallError
+          raise Error, "Unable to connect to Gravatar server"
         rescue XMLRPC::FaultException => fault
           handle fault
         end
