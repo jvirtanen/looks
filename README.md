@@ -9,13 +9,11 @@ Looks is a command line interface to [Gravatar][].
 Installation
 ------------
 
-Installing Looks requires [Ruby][].
-
-  [Ruby]: http://ruby-lang.org/
-
-Install Looks:
+Install using [RubyGems][]:
 
     gem install looks
+
+  [RubyGems]: http://rubygems.org/
 
 
 Usage
