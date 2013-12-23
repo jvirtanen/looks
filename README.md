@@ -28,22 +28,6 @@ See the usage instructions:
     looks
 
 
-Development
------------
-
-Install the dependencies:
-
-    bundle install
-
-Run the tests:
-
-    bundle exec rake
-
-Run the development version:
-
-    bundle exec bin/looks
-
-
 License
 -------
 
