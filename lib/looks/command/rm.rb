@@ -6,18 +6,18 @@ module Looks
     class Rm < AccountManagement
 
       def arguments
-        [ '<id>' ]
+        [ '<image>' ]
       end
 
       def execute(args)
         super
 
-        id = args.first
+        image = args.first
 
         begin
-          Gravatar::Account.new(config).delete_image(id)
+          Gravatar::Account.new(config).delete_image(image)
         rescue Gravatar::IncorrectMethodParameterError
-          raise Error, "#{id}: Unknown identifier"
+          raise Error, "#{image}: Unknown identifier"
         end
       end
 

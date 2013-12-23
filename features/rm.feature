@@ -4,21 +4,21 @@ Feature: looks rm
     When I run `looks rm --help`
     Then it should pass with:
       """
-      Usage: looks rm [options] <id>
+      Usage: looks rm [options] <image>
       """
 
   Scenario: Missing argument
     When I run `looks rm`
     Then it should fail with:
       """
-      Usage: looks rm [options] <id>
+      Usage: looks rm [options] <image>
       """
 
   Scenario: Missing credentials
     When I run `looks rm foo`
     Then it should fail with:
       """
-      Usage: looks rm [options] <id>
+      Usage: looks rm [options] <image>
       """
 
   Scenario: No connectivity

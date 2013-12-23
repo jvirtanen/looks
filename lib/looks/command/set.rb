@@ -7,23 +7,23 @@ module Looks
     class Set < AccountManagement
 
       def arguments
-        [ '<address>', '<id>' ]
+        [ '<address>', '<image>' ]
       end
 
       def execute(args)
         super
 
-        address, id = args
+        address, image = args
 
         account = Gravatar::Account.new(config)
 
         begin
-          account.use_image(address, id)
+          account.use_image(address, image)
         rescue Gravatar::IncorrectMethodParameterError
           addresses = account.addresses.map { |address| address.email }
 
           if addresses.include? address
-            raise Error, "#{id}: Unknown identifier"
+            raise Error, "#{image}: Unknown identifier"
           else
             raise Error, "#{address}: Unknown email address"
           end
