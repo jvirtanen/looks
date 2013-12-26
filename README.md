@@ -16,18 +16,6 @@ Install using [RubyGems][]:
   [RubyGems]: http://rubygems.org/
 
 
-Usage
------
-
-Configure the default account:
-
-    looks config
-
-See the usage instructions:
-
-    looks
-
-
 License
 -------
 
