@@ -24,7 +24,7 @@ module Looks
         new(id, url, rating)
       end
 
-      attr_accessor :id, :url, :rating
+      attr_reader :id, :url, :rating
 
       def initialize(id, url, rating)
         @id     = id
