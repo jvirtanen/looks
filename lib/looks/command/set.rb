@@ -7,7 +7,7 @@ module Looks
     class Set < AccountManagement
 
       def arguments
-        [ '<address>', '<image>' ]
+        ['<address>', '<image>']
       end
 
       def execute(args)

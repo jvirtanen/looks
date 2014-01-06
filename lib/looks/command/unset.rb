@@ -7,7 +7,7 @@ module Looks
     class Unset < AccountManagement
 
       def arguments
-        [ '<address>' ]
+        ['<address>']
       end
 
       def execute(args)

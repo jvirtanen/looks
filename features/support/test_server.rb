@@ -27,7 +27,7 @@ class TestServer
           data['userimage_url'] = "http://www.gravatar.com/avatar/.png"
         end
 
-        [ address, data ]
+        [address, data]
       end
 
       Hash[result]
@@ -39,7 +39,7 @@ class TestServer
         rating    = value['rating']
         url       = value['url']
 
-        [ userimage, [ rating, url ]]
+        [userimage, [rating, url]]
       end
 
       Hash[result]
@@ -63,7 +63,7 @@ class TestServer
       end
 
       result = addresses.map do |address|
-        [ address, true ]
+        [address, true]
       end
 
       Hash[result]
@@ -83,7 +83,7 @@ class TestServer
       end
 
       result = addresses.map do |address|
-        [ address, true ]
+        [address, true]
       end
 
       Hash[result]
@@ -120,9 +120,9 @@ class TestServer
 
       new_addresses = config['addresses'].map do |key, value|
         if value == userimage
-          [ key, nil ]
+          [key, nil]
         else
-          [ key, value ]
+          [key, value]
         end
       end
 

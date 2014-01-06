@@ -7,7 +7,7 @@ module Looks
     class Push < AccountManagement
 
       def arguments
-        [ '<filename>' ]
+        ['<filename>']
       end
 
       def execute(args)

@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email       = "jussi.k.virtanen@gmail.com"
   s.license     = "MIT"
 
-  s.files = Dir[ 'LICENSE', 'README.md', 'bin/*', 'lib/**/*.rb' ]
+  s.files = Dir['LICENSE', 'README.md', 'bin/*', 'lib/**/*.rb']
 
   s.required_ruby_version = '>= 1.9.3'
 

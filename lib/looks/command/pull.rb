@@ -7,7 +7,7 @@ module Looks
     class Pull < Base
 
       def arguments
-        [ '<address>', '<filename>' ]
+        ['<address>', '<filename>']
       end
 
       def execute(args)

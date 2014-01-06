@@ -6,7 +6,7 @@ module Looks
     class Rm < AccountManagement
 
       def arguments
-        [ '<image>' ]
+        ['<image>']
       end
 
       def execute(args)
