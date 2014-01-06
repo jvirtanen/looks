@@ -2,8 +2,7 @@ require 'looks/command/base'
 require 'looks/error'
 require 'looks/gravatar'
 
-require 'net/http'
-require 'uri'
+require 'faraday'
 
 module Looks
   module Command
@@ -22,8 +21,10 @@ module Looks
 
         begin
           File.open(filename, 'wb') do |file|
-            file.write(Net::HTTP.get(URI(download_url)))
+            file.write(Faraday.get(download_url).body)
           end
+        rescue Faraday::Error::ClientError
+          raise Error, "Unable to connect to Gravatar server"
         rescue IOError, SystemCallError
           raise Error, "#{filename}: Cannot write file"
         end
