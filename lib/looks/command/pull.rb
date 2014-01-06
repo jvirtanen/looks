@@ -2,6 +2,9 @@ require 'looks/command/base'
 require 'looks/error'
 require 'looks/gravatar'
 
+require 'net/http'
+require 'uri'
+
 module Looks
   module Command
     class Pull < Base
@@ -15,9 +18,11 @@ module Looks
 
         address, filename = args
 
+        download_url = Gravatar.download_url(address)
+
         begin
           File.open(filename, 'wb') do |file|
-            file.write(Gravatar.get(address))
+            file.write(Net::HTTP.get(URI(download_url)))
           end
         rescue IOError, SystemCallError
           raise Error, "#{filename}: Cannot write file"

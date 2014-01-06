@@ -11,8 +11,10 @@ module Looks
     class Account
 
       def initialize(config)
+        uri = Gravatar.api_url(config.address)
+
         @password = config.password
-        @server   = XMLRPC::Client.new_from_uri(Gravatar.url(config.address))
+        @server   = XMLRPC::Client.new_from_uri(uri)
       end
 
       def addresses
