@@ -1,7 +1,7 @@
 require 'looks/gravatar/account'
 require 'looks/gravatar/address'
 require 'looks/gravatar/errors'
-require 'looks/gravatar/image'
+require 'looks/gravatar/userimage'
 
 require 'digest/md5'
 require 'net/http'

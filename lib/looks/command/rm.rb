@@ -15,7 +15,7 @@ module Looks
         image = args.first
 
         begin
-          Gravatar::Account.new(config).delete_image(image)
+          Gravatar::Account.new(config).delete_userimage(image)
         rescue Gravatar::IncorrectMethodParameterError
           raise Error, "#{image}: Unknown identifier"
         end

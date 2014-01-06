@@ -27,7 +27,7 @@ module Looks
         if @verbose
           addresses.each do |address|
             puts "#{address.email}"
-            puts "  #{address.image.id}" unless address.image.nil?
+            puts "  #{address.userimage.id}" unless address.userimage.nil?
           end
         else
           puts addresses

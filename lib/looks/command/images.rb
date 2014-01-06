@@ -23,14 +23,14 @@ module Looks
         super
 
         account = Gravatar::Account.new(config)
-        images  = account.images
+        images  = account.userimages
 
         if @verbose
           addresses = account.addresses
 
           images.each do |image|
             puts "#{image.id}"
-            addresses.select { |a| a.image == image }.each do |address|
+            addresses.select { |a| a.userimage == image }.each do |address|
               puts "  #{address}"
             end
           end

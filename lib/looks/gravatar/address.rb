@@ -1,4 +1,4 @@
-require 'looks/gravatar/image'
+require 'looks/gravatar/userimage'
 
 module Looks
   module Gravatar
@@ -6,17 +6,17 @@ module Looks
       include Comparable
 
       def self.new_from_addresses(key, value)
-        email = key
-        image = Image.new_from_addresses(value)
+        email     = key
+        userimage = Userimage.new_from_addresses(value)
 
-        new(email, image)
+        new(email, userimage)
       end
 
-      attr_reader :email, :image
+      attr_reader :email, :userimage
 
-      def initialize(email, image)
-        @email = email
-        @image = image
+      def initialize(email, userimage)
+        @email     = email
+        @userimage = userimage
       end
 
       def <=>(other)

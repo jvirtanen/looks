@@ -1,7 +1,7 @@
 require 'looks/error'
 require 'looks/gravatar/address'
 require 'looks/gravatar/errors'
-require 'looks/gravatar/image'
+require 'looks/gravatar/userimage'
 
 require 'base64'
 require 'xmlrpc/client'
@@ -23,34 +23,37 @@ module Looks
         addresses.sort
       end
 
-      def images
-        images = call('grav.userimages').map do |key, value|
-          Image.new_from_images(key, value)
+      def userimages
+        userimages = call('grav.userimages').map do |key, value|
+          Userimage.new_from_userimages(key, value)
         end
 
-        images.sort
+        userimages.sort
       end
 
-      def save_data(image)
-        data = Base64.encode64(image)
-
-        call('grav.saveData', { 'data' => data, 'rating' => 0 })
-      end
-
-      def delete_image(image)
-        call('grav.deleteUserimage', { 'userimage' => image })
-      end
-
-      def use_image(address, id)
-        call('grav.useUserimage', {
-          'userimage' => id,
-          'addresses' => [ address ]
+      def save_data(data)
+        call('grav.saveData', {
+          'data' => Base64.encode64(data),
+          'rating' => 0
         })
       end
 
-      def remove_image(address)
+      def delete_userimage(userimage)
+        call('grav.deleteUserimage', {
+          'userimage' => userimage
+        })
+      end
+
+      def use_userimage(userimage, addresses)
+        call('grav.useUserimage', {
+          'userimage' => userimage,
+          'addresses' => addresses
+        })
+      end
+
+      def remove_image(addresses)
         call('grav.removeImage', {
-          'addresses' => [ address ]
+          'addresses' => addresses
         })
       end
 

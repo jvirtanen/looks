@@ -18,7 +18,7 @@ module Looks
         account = Gravatar::Account.new(config)
 
         begin
-          account.remove_image(address)
+          account.remove_image([address])
         rescue Gravatar::IncorrectMethodParameterError
           raise Error, "#{address}: Unknown email address"
         end
