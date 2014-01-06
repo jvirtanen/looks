@@ -16,20 +16,16 @@ module Looks
       end
 
       def addresses
-        addresses = []
-
-        call('grav.addresses').each do |key, value|
-          addresses.push Address.new_from_addresses(key, value)
+        addresses = call('grav.addresses').map do |key, value|
+          Address.new_from_addresses(key, value)
         end
 
         addresses.sort
       end
 
       def images
-        images = []
-
-        call('grav.userimages').each do |key, value|
-          images.push Image.new_from_images(key, value)
+        images = call('grav.userimages').map do |key, value|
+          Image.new_from_images(key, value)
         end
 
         images.sort
