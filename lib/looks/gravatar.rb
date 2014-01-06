@@ -19,7 +19,7 @@ module Looks
     end
 
     def self.download_url(email)
-      "#{DOWNLOAD_URL}/#{hash(email)}.jpg"
+      "#{DOWNLOAD_URL}/#{hash(email)}"
     end
 
     def self.hash(email)

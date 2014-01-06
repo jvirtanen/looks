@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 1.9.3'
 
-  s.add_runtime_dependency 'faraday',  '~> 0.8.8'
   s.add_runtime_dependency 'highline', '~> 1.6'
   s.add_runtime_dependency 'inifile',  '~> 2.0'
 
