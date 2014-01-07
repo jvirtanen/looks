@@ -1,3 +1,5 @@
+require 'looks/error'
+
 require 'inifile'
 
 module Looks
@@ -8,7 +10,11 @@ module Looks
     end
 
     def self.load
-      new(IniFile.new(:filename => filename))
+      begin
+        new(IniFile.new(:filename => filename))
+      rescue IniFile::Error
+        raise Error, "#{filename}: Invalid file format"
+      end
     end
 
     def address

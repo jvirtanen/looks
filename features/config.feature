@@ -22,3 +22,14 @@ Feature: looks config
       """
       HOME/.looks: Cannot write file
       """
+
+  Scenario: Invalid configuration file format
+    Given a file named "HOME/.looks" with:
+      """
+      poop
+      """
+    When I run `looks addresses`
+    Then it should fail with:
+      """
+      HOME/.looks: Invalid file format
+      """
