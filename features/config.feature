@@ -18,5 +18,7 @@ Feature: looks config
     Given an empty file named "HOME/.looks"
     And I run `chmod u-w HOME/.looks`
     When I configure the default account
-    Then the output should contain "HOME/.looks: Cannot write file"
-    And the exit status should not be 0
+    Then it should fail with:
+      """
+      HOME/.looks: Cannot write file
+      """
