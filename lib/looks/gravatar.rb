@@ -7,6 +7,7 @@ require 'digest/md5'
 
 module Looks
   module Gravatar
+    module_function
 
     DEFAULT_API_URL      = 'https://secure.gravatar.com/xmlrpc'
     DEFAULT_DOWNLOAD_URL = 'http://gravatar.com/avatar'
@@ -14,15 +15,15 @@ module Looks
     API_URL      = ENV['LOOKS_GRAVATAR_API_URL']      || DEFAULT_API_URL
     DOWNLOAD_URL = ENV['LOOKS_GRAVATAR_DOWNLOAD_URL'] || DEFAULT_DOWNLOAD_URL
 
-    def self.api_url(email)
+    def api_url(email)
       "#{API_URL}?user=#{hash(email)}"
     end
 
-    def self.download_url(email)
+    def download_url(email)
       "#{DOWNLOAD_URL}/#{hash(email)}"
     end
 
-    def self.hash(email)
+    def hash(email)
       Digest::MD5.hexdigest(email.strip.downcase)
     end
 

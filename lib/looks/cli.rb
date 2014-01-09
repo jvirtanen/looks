@@ -4,6 +4,7 @@ require 'looks/error'
 
 module Looks
   module CLI
+    module_function
 
     USAGE = <<-EOF
 Usage: looks <command> [arguments]
@@ -31,7 +32,7 @@ Commands:
       'unset'     => Command::Unset
     }
 
-    def self.start(args)
+    def start(args)
       usage if args.empty?
 
       command = args.shift
@@ -46,11 +47,11 @@ Commands:
       end
     end
 
-    def self.usage
+    def usage
       abort USAGE
     end
 
-    def self.error(message)
+    def error(message)
       abort "looks: error: #{message}"
     end
 
