@@ -76,7 +76,7 @@ module Looks
       end
 
       def set_version
-        @opts.version = Looks::VERSION
+        @opts.version = VERSION
       end
 
     end
