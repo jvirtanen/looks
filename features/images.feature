@@ -14,6 +14,15 @@ Feature: looks images
       Usage: looks images [options]
       """
 
+  Scenario: Wrong credentials
+    Given a test server is running
+    And I configure wrong credentials
+    When I run `looks images`
+    Then it should fail with:
+      """
+      looks: error: Invalid email address or password
+      """
+
   Scenario: No connectivity
     Given I configure the default account
     When I run `looks images`

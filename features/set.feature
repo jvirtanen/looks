@@ -21,6 +21,15 @@ Feature: looks set
       Usage: looks set [options] <address> <image>
       """
 
+  Scenario: Wrong credentials
+    Given a test server is running
+    And I configure wrong credentials
+    When I run `looks set alice@example.org xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+    Then it should fail with:
+      """
+      looks: error: Invalid email address or password
+      """
+
   Scenario: No connectivity
     Given I configure the default account
     When I run `looks set alice@example.com foo`

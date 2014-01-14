@@ -1,4 +1,7 @@
 {
+  "credentials": {
+    "password": "secret"
+  },
   "addresses": {
     "alice@example.com": "1405e840549b8515a2c9eb41cd7126e5",
     "alice@example.net": "1405e840549b8515a2c9eb41cd7126e5",

@@ -30,9 +30,17 @@ Given /^I wait for a file named "([^"]+)" to be created$/ do |filename|
 end
 
 Given /^I configure the default account$/ do
+  step "I configure email address \"alice\" and password \"secret\""
+end
+
+Given /^I configure wrong credentials$/ do
+  step "I configure email address \"alice\" and password \"wrong\""
+end
+
+Given /^I configure email address "([^"]+)" and password "([^"]+)"$/ do |address, password|
   step "I run `looks config` interactively"
-  step "I type \"alice\""
-  step "I type \"secret\""
+  step "I type \"#{address}\""
+  step "I type \"#{password}\""
   step "I wait for a file named \"HOME/.looks\" to be created"
 end
 

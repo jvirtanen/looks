@@ -12,6 +12,8 @@ class TestServer
     servlet = XMLRPC::WEBrickServlet.new
 
     servlet.add_handler("grav.addresses") do |args|
+      authenticate(args, config)
+
       result = config['addresses'].map do |key, value|
         address = key
         data    = Hash.new
@@ -34,6 +36,8 @@ class TestServer
     end
 
     servlet.add_handler("grav.userimages") do |args|
+      authenticate(args, config)
+
       result = config['userimages'].map do |key, value|
         userimage = key
         rating    = value['rating']
@@ -46,6 +50,8 @@ class TestServer
     end
 
     servlet.add_handler("grav.useUserimage") do |args|
+      authenticate(args, config)
+
       userimage = args['userimage']
       addresses = args['addresses']
 
@@ -70,6 +76,8 @@ class TestServer
     end
 
     servlet.add_handler("grav.removeImage") do |args|
+      authenticate(args, config)
+
       addresses = args['addresses']
 
       method_parameter_missing unless addresses
@@ -90,6 +98,8 @@ class TestServer
     end
 
     servlet.add_handler("grav.saveData") do |args|
+      authenticate(args, config)
+
       data   = args['data']
       rating = args['rating']
 
@@ -111,6 +121,8 @@ class TestServer
     end
 
     servlet.add_handler("grav.deleteUserimage") do |args|
+      authenticate(args, config)
+
       userimage = args['userimage']
 
       method_parameter_missing   unless userimage
@@ -153,10 +165,18 @@ class TestServer
     not Dimensions(StringIO.new(data)).tap { |io| io.read }.width.nil?
   end
 
+  def authenticate(args, config)
+    authentication_error if args['password'] != config['credentials']['password']
+  end
+
   def unknown_addresses(addresses, config)
     addresses.select do |address|
       not config['addresses'].include? address
     end
+  end
+
+  def authentication_error
+    raise XMLRPC::FaultException.new(-9, "Authentication error")
   end
 
   def method_parameter_missing

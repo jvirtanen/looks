@@ -21,6 +21,16 @@ Feature: looks push
       Usage: looks push [options] <filename>
       """
 
+  Scenario: Wrong credentials
+    Given a test server is running
+    And an empty file named "foo.png"
+    And I configure wrong credentials
+    When I run `looks push foo.png`
+    Then it should fail with:
+      """
+      looks: error: Invalid email address or password
+      """
+
   Scenario: File not found
     Given I configure the default account
     When I run `looks push foo.png`
