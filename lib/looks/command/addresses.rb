@@ -14,7 +14,7 @@ module Looks
       def configure(opts)
         super
 
-        opts.on('-v', '--verbose', "Be verbose") do |address|
+        opts.on('-v', '--verbose', "Be verbose") do
           @verbose = true
         end
       end
