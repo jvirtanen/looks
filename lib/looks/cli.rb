@@ -13,7 +13,7 @@ Commands:
   addresses  List email addresses
   config     Configure the default account
   images     List uploaded images
-  pull       Download an image
+  open       Open an uploaded image
   push       Upload an image
   rm         Remove an uploaded image
   set        Set the image for an email address
@@ -25,7 +25,7 @@ Commands:
       'addresses' => Command::Addresses,
       'config'    => Command::Config,
       'images'    => Command::Images,
-      'pull'      => Command::Pull,
+      'open'      => Command::Open,
       'push'      => Command::Push,
       'rm'        => Command::Rm,
       'set'       => Command::Set,
